@@ -37,14 +37,17 @@ def camera_worker(q):
                 pass
 
         current_gesture = None
-        
+        ##Определение жеста
   
         if hands_states.get("Left") == [1, 1, 1, 0, 0] and hands_states.get("Right") == [1, 1, 1, 1, 1]:
              current_gesture = "52"
 
         elif hands_states.get("Left") == [1, 1, 1, 1, 1]:
              current_gesture = "LEFT_PALM"
+        elif hands_states.get("Right") == [0, 1, 1, 0, 0]:
+            current_gesture = "RESTART"
 
+        ##Определение действия
         if current_gesture != last_gesture and current_gesture is not None:
             
             if current_gesture == "52":
@@ -68,6 +71,13 @@ def camera_worker(q):
                           pg.mixer.music.unpause()
                           is_playing = True
                           print("Ладонь: Музыка играет дальше")
+            elif current_gesture == "RESTART" and is_playing and is_track_started:
+                if is_track_started:
+                    pg.mixer.music.play()
+                    is_playing = True
+                    print("Знак V: Музыка перезапущена с начала")
+                else:
+                    print("Игнор V: Сначала запустите трек жестом 52!")
         last_gesture = current_gesture
         final_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         img_pil = Image.fromarray(final_rgb)
