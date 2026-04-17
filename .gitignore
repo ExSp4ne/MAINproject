@@ -1,3 +1,33 @@
+import os
+
+gitignore_content = """# Байт-код Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Виртуальное окружение (локальные библиотеки)
 env/
 venv/
-__pycache__/
+ENV/
+.env/
+
+# Артефакты PyInstaller (сборка .exe)
+build/
+dist/
+*.spec
+
+# Локальные аудиофайлы для тестов
+*.mp3
+*.wav
+*.ogg
+
+# Логи и временные файлы
+*.log
+.DS_Store
+"""
+
+file_path = "gitignore" # Назовем так для скачивания, пользователь переименует в .gitignore
+
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(gitignore_content)
+.vs/
