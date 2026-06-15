@@ -478,15 +478,14 @@ class App(ctk.CTk):
         self.lbl_instr.pack(pady=10)
      
 
-        # === ДОБАВИТЬ ЭТОТ БЛОК ===
         self.btn_quit = ctk.CTkButton(
             self.tab_main,
             text="Выключить приложение ⏻",
-            fg_color="#EF4444",       # Красный цвет для кнопки выхода
+            fg_color="#EF4444",      
             hover_color="#B91C1C",
             font=("Arial", 16, "bold"),
             height=45,
-            command=self.quit_app     # Привязываем к существующему методу безопасного выхода
+            command=self.quit_app 
         )
         self.btn_quit.pack(side="bottom", pady=(10, 20), fill="x", padx=40)
 
